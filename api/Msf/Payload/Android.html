@@ -551,15 +551,6 @@ href="http://source.android.com/tech/dalvik/dex-format.html">source.android.com/
       <pre class="lines">
 
 
-100
-101
-102
-103
-104
-105
-106
-107
-108
 109
 110
 111
@@ -577,10 +568,19 @@ href="http://source.android.com/tech/dalvik/dex-format.html">source.android.com/
 123
 124
 125
-126</pre>
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/android.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/android.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_jar'>generate_jar</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='id identifier rubyid_generate_config'>generate_config</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
@@ -730,7 +730,16 @@ href="http://source.android.com/tech/dalvik/dex-format.html">source.android.com/
 95
 96
 97
-98</pre>
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/msf/core/payload/android.rb', line 68</span>
@@ -748,7 +757,7 @@ href="http://source.android.com/tech/dalvik/dex-format.html">source.android.com/
   <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_public_key'>public_key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_public_key'>public_key</span>
 
   <span class='comment'># Some time within the last 3 years
-</span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_before'>not_before</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>3600</span><span class='op'>*</span><span class='int'>24</span><span class='op'>*</span><span class='int'>365</span><span class='op'>*</span><span class='int'>3</span><span class='rparen'>)</span>
+</span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_before'>not_before</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>3600</span> <span class='op'>*</span> <span class='int'>24</span> <span class='op'>*</span> <span class='int'>365</span> <span class='op'>*</span> <span class='int'>3</span><span class='rparen'>)</span>
 
   <span class='comment'># From http://developer.android.com/tools/publishing/app-signing.html
 </span>  <span class='comment'># &quot;&quot;&quot;
@@ -759,8 +768,17 @@ href="http://source.android.com/tech/dalvik/dex-format.html">source.android.com/
 </span>  <span class='comment'># requirement. You cannot upload an application if it is signed
 </span>  <span class='comment'># with a key whose validity expires before that date.
 </span>  <span class='comment'># &quot;&quot;&quot;
-</span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_after'>not_after</span> <span class='op'>=</span> <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_before'>not_before</span> <span class='op'>+</span> <span class='int'>3600</span><span class='op'>*</span><span class='int'>24</span><span class='op'>*</span><span class='int'>365</span><span class='op'>*</span><span class='int'>20</span> <span class='comment'># 20 years
-</span>
+</span>  <span class='comment'>#
+</span>  <span class='comment'># 32-bit Ruby (and 64-bit Ruby on Windows) cannot deal with
+</span>  <span class='comment'># certificate not_after times later than Jan 1st 2038, since long is 32-bit.
+</span>  <span class='comment'># Set not_after to a random time 2~ years before the first bad date.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># FIXME: this will break again randomly starting in late 2033, hopefully
+</span>  <span class='comment'># all 32-bit systems will be dead by then...
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The timestamp 0x78045d81 equates to 2033-10-22 00:00:01 UTC
+</span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_after'>not_after</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_at'>at</span><span class='lparen'>(</span><span class='int'>0x78045d81</span> <span class='op'>+</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>0x7fffffff</span> <span class='op'>-</span> <span class='int'>0x78045d81</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
   <span class='comment'># If this line is left out, signature verification fails on OSX.
 </span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_sign'>sign</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA1</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
 
@@ -776,7 +794,7 @@ href="http://source.android.com/tech/dalvik/dex-format.html">source.android.com/
 </div>
 
       <div id="footer">
-  Generated on Tue Feb 27 22:35:22 2018 by
+  Generated on Tue Mar  6 22:33:13 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>

